@@ -5,29 +5,24 @@ class Timer extends React.Component {
     super(props);
     this.state = { time: 0, x: 0, y: 0 };
     this.intervalID = null;
+    this.handlekeyPressed = this.handlekeyPressed.bind(this);
   }
   componentDidMount() {}
 
   componentWillUnmount() {}
 
   componentDidUpdate(prevProps, prevState) {
-   
     if (this.state.x === 250 && this.state.y === 250) {
-      document.removeEventListener("keydown", this.handlekeyPressed.bind(this));
       clearInterval(this.intervalID);
+      window.removeEventListener("keydown", this.handlekeyPressed);
     }
-    
   }
-
-  // handleRemove() {
-  //   console.log("remove");
-  // }
 
   handleClick() {
     this.intervalID = setInterval(() => {
       this.setState({ time: this.state.time + 1 });
     }, 1000);
-    document.addEventListener("keydown", this.handlekeyPressed.bind(this));
+    window.addEventListener("keydown", this.handlekeyPressed);
   }
 
   handlekeyPressed(e) {
