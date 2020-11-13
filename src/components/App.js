@@ -11,8 +11,9 @@ class Timer extends React.Component {
   componentWillUnmount() {}
 
   componentDidUpdate(prevProps, prevState) {
-    document.removeEventListener("keydown", this.handlekeyPressed.bind(this));
+   
     if (this.state.x === 250 && this.state.y === 250) {
+      document.removeEventListener("keydown", this.handlekeyPressed.bind(this));
       clearInterval(this.intervalID);
     }
     
@@ -50,7 +51,7 @@ class Timer extends React.Component {
   render() {
     return (
       <>
-        <p className="heading-timer">Timer = {this.state.time}</p>
+        <p className="heading-timer">{this.state.time}</p>
         <button className="start" onClick={this.handleClick.bind(this)}>
           Start
         </button>
